@@ -3,21 +3,33 @@ name: My First Workflow
 on: push 
 
 jobs:
-    first_job:
+    first_job_1:
         runs-on: ubuntu-latest
         steps:
-        - name: Checkout Repo
-          uses: actions/checkout@v4
+        - name: Install Cowsay program
+          run: sudo apt-get install cowsay -y
 
-        - name: List and read files
-          run: 
-            echo "My First Github Action Job"
-            ls -alrt
-            cat README.md 
+        - name: Execute cowsay CMD
+          run: cowsay -f dragon "run for cover, I am a DRAGON.....RAWR " >> dragon.txt
 
+        - name: Sleep for 30 seconds
+          run: sleep 30
 
-        - name: List Files
-          run: ls 
-        - name: Read Files
-          run: cat README.md
+    test_job_2:
+        runs-on: ubuntu-latest
+        steps:
+        - name: sleep for 10 seconds
+          run: sleep 10
+          
+        - name: Test file Exits
+          run: grep -i "dragon" dragon.txt
+
+    deploy_job_2:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Read File
+          run: cat dragon.txt
+          
+        - name: Deploy
+          run: echo Deploying..... ..... ... .. .
 

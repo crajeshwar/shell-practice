@@ -1,0 +1,18 @@
+name: Working with multipule jobs
+
+on: push 
+
+jobs:
+    build_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Repo
+          uses: actions/checkout@v4
+
+        - name: List Repo files
+          run: ls -alrt
+
+        - name: Execute Shell Script
+          run: |
+            chmod +x ./ascii-script.sh
+            ./ascii-script.sh
